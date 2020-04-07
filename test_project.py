@@ -18,7 +18,7 @@ def dummy_func(input_array):
         polynomial
     """
     n_samples = 10_000
-
+    np.random.seed(0)
     test_range = np.linspace(0, 100, n_samples)
     random_coefficients = np.random.rand((16,))
     target = np.polynomial.polyval(test_range, random_coefficients, tensor=False)
