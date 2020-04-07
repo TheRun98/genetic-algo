@@ -4,6 +4,12 @@ from generation import Generation
 from individual import Individual
 from population import Population
 
+np.random.seed(0)
+TARGET = np.random.rand((16,))
+RANDOM_GENES_A = np.random.rand((16,))
+RANDOM_GENES_B = np.random.rand((16,))
+RANDOM_GENES_C = np.random.rand((16,))
+
 
 def dummy_func(input_array):
     """
@@ -18,11 +24,9 @@ def dummy_func(input_array):
         polynomial
     """
     n_samples = 10_000
-    np.random.seed(0)
     test_range = np.linspace(0, 100, n_samples)
-    random_coefficients = np.random.rand((16,))
-    target = np.polynomial.polyval(test_range, random_coefficients, tensor=False)
-    output = np.polynomial.polyval(input_array, random_coefficients, tensor=False)
+    target = np.polynomial.polyval(test_range, TARGET, tensor=False)
+    output = np.polynomial.polyval(test_range, input_array, tensor=False)
     loss = np.sum(abs(target - output)) / n_samples
     return loss
 
