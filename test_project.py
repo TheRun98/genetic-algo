@@ -45,7 +45,7 @@ class TestGeneticAlgo(unittest.TestCase):
         self.assertTrue(self.generation.__str__() == "")
 
     def test_individual(self):
-        self.assertTrue(self.individual.__str__() == "")
+        self.assertTrue(self.individual_a.__str__() == "")
 
     def test_population(self):
         self.assertTrue(self.population.__str__() == "")

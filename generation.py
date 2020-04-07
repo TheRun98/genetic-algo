@@ -27,3 +27,4 @@ class Generation:
         output = ""
         for i in self.individuals:
             output += str(i) + "\n"
+        return output
