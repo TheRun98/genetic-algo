@@ -1,28 +1,20 @@
-
-
 class Population:
     """
-    has a list of Generation objects as an attribute, and appends new 
+    A population list of Generation objects as an attribute, and appends new 
     ‘generations’ to the list as the old ones reproduce. Continues this cycle 
     until either a maximum number of generations is reached or the 
     fitness reaches a target value.
     
     Attributes:
-        fitness_func: function used to asses fitness of indivduals.
-        target_value: target fitness at which main() will stop.
-        generations: An Array of generations.
+        fitness_func (func): function used to asses fitness of indivduals.
+        target_value (float): target fitness at which main() will stop.
+        generations (list): An Array of generations.
 
     Driver: Kosta | Navigator: Ben
     """
 
     def __init__(self, target_value, fitness_func):
-        """
-        
-        Args:
-            target_value(float): target fitness
-            fitness_func(func): function for assessing fitness of individuals
-        
-        """
+        return
         
     def new_generation(self):
         """

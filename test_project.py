@@ -45,6 +45,10 @@ class TestGeneticAlgo(unittest.TestCase):
         self.population = Population(0.25, func)
 
     def test_generation(self):
+        """ General test of a generation output
+        
+            (Yazeed) 
+        """
         self.assertTrue(self.generation.__str__() == "None: [0.0202184  0.83261985 0.77815675 0.87001215 0.97861834 "
                                                      "0.79915856\n 0.46147936 0.78052918 0.11827443 0.63992102 "
                                                      "0.14335329 0.94466892\n 0.52184832 0.41466194 0.26455561 "
@@ -57,12 +61,20 @@ class TestGeneticAlgo(unittest.TestCase):
                                                      "0.13818295]\n")
 
     def test_individual(self):
+        """ General test of an individual output
+        
+            (Yazeed & Charlie) 
+        """
         self.assertTrue(self.individual_a.__str__() == "None: [0.0202184  0.83261985 0.77815675 0.87001215 0.97861834 "
                                                        "0.79915856\n 0.46147936 0.78052918 0.11827443 0.63992102 "
                                                        "0.14335329 0.94466892\n 0.52184832 0.41466194 0.26455561 "
                                                        "0.77423369]")
 
     def test_population(self):
+        """ General test of a population output
+        
+            (Yazeed & Kosta)
+        """
         self.assertTrue(self.population.__str__() == "")
 
     def test_individual_assess_fit(self):
