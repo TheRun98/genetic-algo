@@ -66,12 +66,12 @@ class TestGeneticAlgo(unittest.TestCase):
         self.assertTrue(self.population.__str__() == "")
 
     def test_individual_assess_fit(self):
-        """(Ben)"""
+        """(Ben w/ Charlie)"""
         self.individual_a.assess_fit()
         self.assertAlmostEqual(self.individual_a.fitness, 4.309953574343199e+28)
 
     def test_generation_fitness(self):
-        """(Ben)"""
+        """(Ben w/ Yazeed)"""
         self.generation.fitness()
         self.assertAlmostEqual(self.generation.individuals[0].fitness, 4.309953574343199e+28)
 

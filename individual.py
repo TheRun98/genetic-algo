@@ -7,7 +7,7 @@ class Individual:
         fitness(float): a float representing the individual's fitness, stored so it doesn't have to be evaluated every
             time the value is used, default None
 
-    (Ben)
+    (Ben w/ Charlie)
     """
 
     def __init__(self, genes, fit_func):

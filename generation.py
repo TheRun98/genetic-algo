@@ -25,7 +25,7 @@ class Generation:
 
         Side Effects:
             updates self.fitness for all individuals
-        (Ben)
+        (Ben w/ Yazheed)
         """
         for i in self.individuals:
             i.assess_fit()
