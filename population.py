@@ -1,16 +1,17 @@
-# Population class: has a list of Generation objects as an attribute, 
-# and appends new ‘generations’ to the list as the old ones die. 
-# Continues this cycle until either a maximum number of generations 
-# is reached or the fitness reaches a target value. (Kosta)
+
 
 class Population:
     """
-    A class for..
+    has a list of Generation objects as an attribute, and appends new ‘generations’ to the list as the old ones
+    reproduce. Continues this cycle until either a maximum number of generations is reached or the fitness reaches a
+    target value.
     
     Attributes:
         fitness_func: function used to asses fitness of indivduals.
+        target_value: target fitness at which main() will stop.
         generations: An Array of generations.
 
+    (Kosta)
     """
 
     def __init__(self, target_value, fitness_func):
