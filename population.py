@@ -23,9 +23,6 @@ class Population:
         
         """
         
-        self.target_value
-        self.fitness_func
-        
     def new_generation(self):
         """
         Makes a new generation object based on the last generation object 
