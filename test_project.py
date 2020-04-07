@@ -34,11 +34,12 @@ def dummy_func(input_array):
 class TestGeneticAlgo(unittest.TestCase):
 
     def setUp(self):
-        genes = []
-        func = None
-        self.individual = Individual(genes, func)
-        self.generation = Generation([self.individual], func)
-        self.population = Population([self.generation], func)
+        func = dummy_func
+        self.individual_a = Individual(RANDOM_GENES_A, func)
+        self.individual_b = Individual(RANDOM_GENES_B, func)
+        self.individual_c = Individual(RANDOM_GENES_C, func)
+        self.generation = Generation([self.individual_a, self.individual_b, self.individual_c], func)
+        self.population = Population(0.25, func)
 
     def test_generation(self):
         self.assertTrue(self.generation.__str__() == "")
