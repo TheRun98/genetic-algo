@@ -17,9 +17,9 @@ class Population:
     def __init__(self, target_value, fitness_func):
         """
         
-        Attributes:
+        Args:
             target_value(float): target fitness
-            fitness_func(): 
+            fitness_func(func): function for assessing fitness of individuals
         
         """
         
