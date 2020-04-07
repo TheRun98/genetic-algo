@@ -22,7 +22,7 @@ class Individual:
 
     def assess_fit(self):
         """ Assesses fitness based on self.fit_func and stores it it in self.fit"""
-        # self.fitness = self.fit_func(self.genes)
+        self.fitness = self.fit_func(self.genes)
 
     def reproduce(self, other):
         """ Creates child with parents 'self' and 'other'.
