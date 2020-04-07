@@ -1,8 +1,6 @@
 import unittest
-import generation as gen 
-import individual as ind
-import population as pop
+import generation as gen
+import individual as indv 
+import population as pop 
 
 class TestGeneticAlgo(unittest.TestCase):
-    
-    
