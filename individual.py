@@ -1,5 +1,5 @@
 class Individual:
-    """ Class that represent an individual
+    """ Class that represents an individual
     
     Attributes: 
         genes: default is None
@@ -9,7 +9,6 @@ class Individual:
 
     def __init__(self, genes, fit_func):
         """
-
         Args:
             genes(array): an array of 16 attributes representing the individual's characteristics
             fit_func(func): function for assessing fitness
