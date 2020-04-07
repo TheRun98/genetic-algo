@@ -42,3 +42,8 @@ class Population:
             individual: fittest individual
         
         """
+    def __str__(self):
+        output = ""
+        for i, g in enumerate(self.generations):
+            output += f"Generation {i}:\n {str(g)}"
+        return output
