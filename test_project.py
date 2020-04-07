@@ -23,6 +23,8 @@ def dummy_func(input_array):
     Returns:
         loss(float): an approximation of how close the polynomial with coefficients determined by input is to the target
         polynomial
+
+    (Ben)
     """
     n_samples = 10_000
     test_range = np.linspace(0, 100, n_samples)

@@ -21,7 +21,12 @@ class Generation:
     
     def fitness(self):
         """ Assess the fitness of individuals in the generation by calling 
-        fitness method of members self.individuals """
+        fitness method of members self.individuals
+
+        Side Effects:
+            updates self.fitness for all individuals
+        (Ben)
+        """
         for i in self.individuals:
             i.assess_fit()
         
