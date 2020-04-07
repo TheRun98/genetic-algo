@@ -1,16 +1,16 @@
 import unittest
-import generation as gen
-import individual as indv 
-import population as pop 
+from generation import Generation
+from individual import Individual 
+from population import Population 
 
 class TestGeneticAlgo(unittest.TestCase):
     
     def setUp(self):
         genes = []
         func = None
-        self.individual = indv.Individual(genes, func)
-        self.generation = gen.Generation([self.individual])
-        self.population = pop.Population(func)
+        self.individual = Individual(genes, func)
+        self.generation = Generation([self.individual], func)
+        self.population = Population([self.generation], func)
         
     def test_generation(self):
         self.assertTrue(self.generation.__str__() == "")
