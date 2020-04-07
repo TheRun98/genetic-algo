@@ -22,6 +22,8 @@ class Generation:
     def fitness(self):
         """ Assess the fitness of individuals in the generation by calling 
         fitness method of members self.individuals """
+        for i in self.individuals:
+            i.assess_fit()
         
     def __str__(self):
         output = ""
