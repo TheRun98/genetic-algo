@@ -23,7 +23,7 @@ class Generation:
         """ Assess the fitness of individuals in the generation by calling 
         fitness method of members self.individuals """
         
-    
-    
-        
-    
+    def __str__(self):
+        output = ""
+        for i in self.individuals:
+            output += str(i) + "\n"
