@@ -93,6 +93,14 @@ class TestGeneticAlgo(unittest.TestCase):
         """
         self.assertIn(self.individual_a, self.generation)
         self.assertIn(self.individual_b, self.generation)
+        
+    def test_population_validation(self):
+        """
+        Driver: Kosta | Navigator: Charlie
+        """
+        with self.assertRaises(ValueError):
+            test1 = Population.Population("words", 6)
+            test2 = Population.Population(x, 1)
 
 
 if __name__ == "__main__":
