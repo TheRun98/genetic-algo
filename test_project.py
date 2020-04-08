@@ -86,6 +86,13 @@ class TestGeneticAlgo(unittest.TestCase):
         """(Ben w/ Yazeed)"""
         self.generation.fitness()
         self.assertAlmostEqual(self.generation.individuals[0].fitness, 4.309953574343199e+28)
+        
+    def test_population_new_generation(self):
+        """
+        Driver: Kosta | Navigator: Yazeed
+        """
+        self.assertIn(self.individual_a, self.generation)
+        self.assertIn(self.individual_b, self.generation)
 
 
 if __name__ == "__main__":
