@@ -11,7 +11,7 @@ class Generation:
     """
     
     def __init__(self, indiv, fit_func):
-        if not indiv:
+        if indiv is None:
             self.individuals = [Individual(None, fit_func) for x in range(50)]
         else:
             self.individuals = indiv
@@ -22,17 +22,21 @@ class Generation:
         
         Returns:
             Generation: new generation object consisting of individuals 
-            decended from self.individuals
+            descended from self.individuals
             
         Driver: Yazeed | Navigator: Ben
         """
         fitnesses = [x.fitness() for x in self.individuals]
-        mean_fit = mean(fitnesses)
-        fit_indvs = [x for x in self.individuals if x.fitness() > mean]
+        mean_fit = self.mean(fitnesses)
+        fit_indvs = [x for x in self.individuals if x.fitness() > mean_fit]
+        children = list()
         
-        for indv in self.individuals:
-            rand_indv = randint(0, (len(self.individuals) - 1))
-            indv.reproduction(self.individuals[rand_indv])
+        for indv in fit_indvs:
+            for n in range(2):
+                rand_indv = Random.randint(0, (len(self.individuals) - 1))
+                children.append(indv.reproduction(self.individuals[rand_indv]))
+
+        return Generation(children, self.fitness_func)
         
             
     
@@ -64,6 +68,17 @@ class Generation:
         for i in lst:
             sum += i
         return (sum/n)
+
+    def top_fitness(self):
+        """returns fit fittest individual
+
+        Returns:
+            fittest (Individual): individual with the highest fitness
+
+        Driver: Ben | Navigator: Yazeed
+        """
+        self.fitness()
+        return self.individuals[[x.fitness for x in self.individuals].index(max([x.fitness for x in self.individuals]))]
         
     def __str__(self):
         output = ""
