@@ -1,3 +1,6 @@
+from random import Random
+from individual import Individual
+
 class Generation:
     """ This class represents a generaion of individuals
     
@@ -8,7 +11,10 @@ class Generation:
     """
     
     def __init__(self, indiv, fit_func):
-        self.individuals = indiv
+        if not indiv:
+            self.individuals = [Individual(None, fit_func) for x in range(50)]
+        else:
+            self.individuals = indiv
         self.fitness_func = fit_func
          
     def reproduction(self):
@@ -17,7 +23,18 @@ class Generation:
         Returns:
             Generation: new generation object consisting of individuals 
             decended from self.individuals
+            
+        Driver: Yazeed | Navigator: Ben
         """
+        fitnesses = [x.fitness() for x in self.individuals]
+        mean_fit = mean(fitnesses)
+        fit_indvs = [x for x in self.individuals if x.fitness() > mean]
+        
+        for indv in self.individuals:
+            rand_indv = randint(0, (len(self.individuals) - 1))
+            indv.reproduction(self.individuals[rand_indv])
+        
+            
     
     def fitness(self):
         """ Assess the fitness of individuals in the generation by calling 
@@ -25,10 +42,28 @@ class Generation:
 
         Side Effects:
             updates self.fitness for all individuals
-        (Ben w/ Yazheed)
+            
+        Driver: Yazeed | Navigator: Ben
         """
-        for i in self.individuals:
-            i.assess_fit()
+        for indv in self.individuals:
+            indv.assess_fit()
+            
+    def mean(self, lst):
+        """ Finds the mean of a list of numbers
+        
+        Args:
+            lst (list): list of numbers
+        
+        Return:
+            (Int): the mean of the provided list
+            
+        Driver: Yazeed | Navigator: Ben
+        """
+        n = len(lst)
+        sum = 0
+        for i in lst:
+            sum += i
+        return (sum/n)
         
     def __str__(self):
         output = ""
