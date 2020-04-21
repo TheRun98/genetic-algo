@@ -1,3 +1,5 @@
+from generation import Generation
+
 class Population:
     """
     A population list of Generation objects as an attribute, and appends new 
@@ -14,14 +16,25 @@ class Population:
     """
 
     def __init__(self, target_value, fitness_func):
-        return
+        self.fitness_func = fitness_func
+        self.target_value = target_value
+        self.generations = list()
+        self.new_generation()
         
     def new_generation(self):
         """
         Makes a new generation object based on the last generation object 
         in self.generations and appends it to self.generations.
         
+        Driver: Kosta | Navigator: Ben
         """
+        if len(self.generations) == 0:
+            gen = Generation(None, self.fitness_func)
+        else:
+            gen = self.generations[-1].reproduction
+        self.generations.append(gen)
+        return
+        
         
     def main(self):
         """
@@ -32,6 +45,7 @@ class Population:
             individual: fittest individual
         
         """
+        
     def __str__(self):
         output = ""
         for i, g in enumerate(self.generations):
