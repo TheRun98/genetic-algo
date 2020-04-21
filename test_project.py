@@ -12,7 +12,7 @@ RANDOM_GENES_B = np.random.rand(16)
 RANDOM_GENES_C = np.random.rand(16)
 
 
-def dummy_func(input_array):
+def dummy_func_1(input_array):
     """
     a sample fitness function that uses the closeness of fit to a polynomial with random coefficients to calculate
     fitness (loss)
@@ -33,11 +33,31 @@ def dummy_func(input_array):
     loss = np.sum(abs(target - output)) / n_samples
     return loss
 
+def dummy_func_2(input_array):
+    """
+    a sample fitness function that uses the closeness of fit to a linear equation to calculate fitness (loss)
+
+    Args:
+        input_array(array): iterable of 16 floats between 0 and 1
+
+    Returns:
+        loss(float): an approximation of how close the polynomial with coefficients determined by input is to the target
+        linear equation
+
+    (Ben)
+    """
+    n_samples = 10_000
+    test_range = np.linspace(0, 100, n_samples)
+    target = np.ndarray(TARGET)
+    output = np.ndarray(input_array)
+    loss = np.sum(abs(target - output)) / n_samples
+    return -1 * loss
+
 
 class TestGeneticAlgo(unittest.TestCase):
 
     def setUp(self):
-        func = dummy_func
+        func = dummy_func_1
         self.individual_a = Individual(RANDOM_GENES_A, func)
         self.individual_b = Individual(RANDOM_GENES_B, func)
         self.individual_c = Individual(RANDOM_GENES_C, func)
@@ -100,8 +120,9 @@ class TestGeneticAlgo(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             test1 = Population.Population("words", 6)
-            test2 = Population.Population(x, 1)
+            # test2 = Population.Population(x, 1)
 
 
 if __name__ == "__main__":
-    unittest.main()
+    # unittest.main()
+    p = Population(-0.5, dummy_func_2)
