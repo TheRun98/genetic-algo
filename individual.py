@@ -56,11 +56,12 @@ class Individual:
         elif SEX_PARAM[0] < rand <= SEX_PARAM[1]:
             self.genes[index] = father.genes[index] # inherit from father
         elif SEX_PARAM[1] < rand <= SEX_PARAM[2]: 
-            self.genes[index] = mean([father.genes[index], mother.genes[index]]) # average of parents
+            self.genes[index] = self.mean([father.genes[index], mother.genes[index]]) # average of parents
         else:
-            self.genes[index] = random.uniform(0, 1) # assigns randomly
-            
-     def mean(self, lst):
+            self.genes[index] = random.uniform(0, 1)
+        return
+
+    def mean(self, lst):
         """ Finds the mean of a list of numbers
         
         Args:
