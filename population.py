@@ -51,6 +51,7 @@ class Population:
         fittest = None
 
         while gens < 100:
+            gens += 1
             self.new_generation()
             fittest = self.generations[-1].top_fitness()
             top_fitness = fittest.fitness
