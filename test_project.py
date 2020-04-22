@@ -46,10 +46,8 @@ def dummy_func_2(input_array):
 
     (Ben)
     """
-    n_samples = 10_000
-    test_range = np.linspace(0, 100, n_samples)
     output = np.array(input_array)
-    loss = np.sum(abs(TARGET - output)) / n_samples
+    loss = np.sum(abs(TARGET - output))
     return -1 * loss
 
 
