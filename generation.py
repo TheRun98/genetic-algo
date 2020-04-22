@@ -73,7 +73,7 @@ class Generation:
         return (sum / n)
 
     def top_fitness(self):
-        """returns fit fittest individual
+        """returns fittest individual
 
         Returns:
             fittest (Individual): individual with the highest fitness
