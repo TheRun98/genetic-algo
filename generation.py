@@ -72,6 +72,16 @@ class Generation:
             sum += i
         return (sum / n)
 
+    def mean_fitness(self):
+        """ Finds the mean fitness of self.individuals
+
+        Returns:
+            (Int): the mean of the provided list
+
+        Driver: Ben | Navigator: Yazeed
+        """
+        return self.mean([x.fitness for x in self.individuals])
+
     def top_fitness(self):
         """returns fittest individual
 
