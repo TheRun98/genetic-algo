@@ -1,5 +1,5 @@
 import random
-SEX_PARAM = [0.25, 0.5, .995]
+SEX_PARAM = [0.25, 0.5, .9]
 
 class Individual:
     """ Class that represents an individual
