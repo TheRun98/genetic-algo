@@ -46,5 +46,5 @@ def dummy_func_2(input_array):
     return -1 * loss
 
 
-p = Population(-0.01, dummy_func_1)
+p = Population(-0.03, dummy_func_1)
 print(p.main())
