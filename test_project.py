@@ -122,6 +122,18 @@ class TestGeneticAlgo(unittest.TestCase):
             test1 = Population.Population("words", 6)
             # test2 = Population.Population(x, 1)
 
+    def test_individual_init(self):
+        i = Individual(None, dummy_func_2)
+        print(i)
+
+    def test_generation_init(self):
+        g = Generation(None, dummy_func_2)
+        print(g)
+
+    def test_population_init(self):
+        p = Population(-0.5, dummy_func_2)
+        print(p)
+
 
 if __name__ == "__main__":
     # unittest.main()
