@@ -27,7 +27,7 @@ def dummy_func_1(input_array):
     (Ben)
     """
     n_samples = 10_000
-    test_range = np.linspace(0, 100, n_samples)
+    test_range = np.linspace(0, 1, n_samples)
     target = polyval(test_range, TARGET, tensor=False)
     output = polyval(test_range, input_array, tensor=False)
     loss = np.sum(abs(target - output)) / n_samples
