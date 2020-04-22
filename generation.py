@@ -1,5 +1,6 @@
-from random import Random
+import random
 from individual import Individual
+
 
 class Generation:
     """ This class represents a generaion of individuals
@@ -9,14 +10,14 @@ class Generation:
         fitness_func (func): function used to assess fitness of individuals
     
     """
-    
+
     def __init__(self, indiv, fit_func):
         if indiv is None:
             self.individuals = [Individual(None, fit_func) for x in range(50)]
         else:
             self.individuals = indiv
         self.fitness_func = fit_func
-         
+
     def reproduction(self):
         """ Produces the next generation
         
@@ -28,18 +29,17 @@ class Generation:
         """
         fitnesses = [x.assess_fit() for x in self.individuals]
         mean_fit = self.mean(fitnesses)
-        fit_indvs = [x for x in self.individuals if x.fitness() > mean_fit]
+        fit_indvs = [x for x in self.individuals if x.fitness > mean_fit]
         children = list()
-        
+
         for indv in fit_indvs:
             for n in range(2):
-                rand_indv = Random.randint(0, (len(self.individuals) - 1))
-                children.append(indv.reproduction(self.individuals[rand_indv]))
+                rand_indv = random.randint(0, (len(self.individuals) - 1))
+                new_child = indv.reproduce(self.individuals[rand_indv])
+                children.append(new_child)
 
         return Generation(children, self.fitness_func)
-        
-            
-    
+
     def fitness(self):
         """ Assess the fitness of individuals in the generation by calling 
         fitness method of members self.individuals
@@ -51,7 +51,7 @@ class Generation:
         """
         for indv in self.individuals:
             indv.assess_fit()
-            
+
     def mean(self, lst):
         """ Finds the mean of a list of numbers
         
@@ -67,7 +67,7 @@ class Generation:
         sum = 0
         for i in lst:
             sum += i
-        return (sum/n)
+        return (sum / n)
 
     def top_fitness(self):
         """returns fit fittest individual
@@ -79,7 +79,7 @@ class Generation:
         """
         self.fitness()
         return self.individuals[[x.fitness for x in self.individuals].index(max([x.fitness for x in self.individuals]))]
-        
+
     def __str__(self):
         output = ""
         for i in self.individuals:

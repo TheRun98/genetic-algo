@@ -41,6 +41,7 @@ class Individual:
         child = Individual(None, self.fit_func)
         for i in range(16):
             child.inherit_gene(i, self, other)
+        return child
 
     def inherit_gene(self, index, mother, father):
         """ Sex inherited gene by self.reproduce
