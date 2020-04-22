@@ -26,7 +26,7 @@ class Generation:
             
         Driver: Yazeed | Navigator: Ben
         """
-        fitnesses = [x.fitness() for x in self.individuals]
+        fitnesses = [x.assess_fit() for x in self.individuals]
         mean_fit = self.mean(fitnesses)
         fit_indvs = [x for x in self.individuals if x.fitness() > mean_fit]
         children = list()
