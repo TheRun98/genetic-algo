@@ -30,8 +30,8 @@ class Generation:
         fitnesses = [x.assess_fit() for x in self.individuals]
         mean_fit = self.mean(fitnesses)
         fit_indvs = [x for x in self.individuals if x.fitness > mean_fit]
-        fit_indvs = fit_indvs.sort(key=[x.fitness for x in self.individuals if x.fitness > mean_fit])
-        children = list()
+        fit_indvs.sort(key=lambda a: a.fitness)
+        children = list([fit_indvs[0]])
 
         for indv in fit_indvs:
             for n in range(2):
