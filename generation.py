@@ -1,6 +1,8 @@
 import random
 from individual import Individual
 
+REPRODUCTION_FAILURE_RATE = 0.1
+
 
 class Generation:
     """ This class represents a generaion of individuals
@@ -34,9 +36,10 @@ class Generation:
 
         for indv in fit_indvs:
             for n in range(2):
-                rand_indv = random.randint(0, (len(self.individuals) - 1))
-                new_child = indv.reproduce(self.individuals[rand_indv])
-                children.append(new_child)
+                if (indv.fitness / mean_fit) * random.random() > REPRODUCTION_FAILURE_RATE:
+                    rand_indv = random.randint(0, (len(self.individuals) - 1))
+                    new_child = indv.reproduce(self.individuals[rand_indv])
+                    children.append(new_child)
 
         return Generation(children, self.fitness_func)
 
