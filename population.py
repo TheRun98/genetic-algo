@@ -55,8 +55,12 @@ class Population:
             self.new_generation()
             fittest = self.generations[-1].top_fitness()
             top_fitness = fittest.fitness
-            print(f"Gen {gens} ({len(self.generations[-1].individuals)} individuals): {top_fitness} (avg: "
-                  f"{self.generations[-1].mean_fitness()})")
+            print("Gen {gens} ({size} individuals): {top_new} [{top_fitness:.4f}] (avg: {mean_fitness:.4f})".format(
+                gens=gens,
+                size=len(self.generations[-1].individuals),
+                top_new=max([x.fitness for x in self.generations[-1].individuals[1:]]),
+                top_fitness=top_fitness,
+                mean_fitness=self.generations[-1].mean_fitness()))
             if top_fitness >= self.target_value:
                 break
         return fittest
