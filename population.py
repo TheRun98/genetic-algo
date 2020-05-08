@@ -16,14 +16,15 @@ class Population:
     Driver: Kosta | Navigator: Ben
     """
 
-    def __init__(self, target_value, fitness_func, sex_param=(0.25, 0.5, .9), length=200, gen_size=50):
+    def __init__(self, target_value, fitness_func, sex_param=(0.25, 0.5, .9), length=200, gen_size=50, min_gen_size=10):
         self.fitness_func = fitness_func
         self.target_value = target_value
         self.generations = list()
-        self.new_generation()
         self.sex_param = sex_param
         self.length = length
         self.gen_size = gen_size
+        self.min_gen_size = min_gen_size
+        self.new_generation()
 
     def new_generation(self):
         """
@@ -64,8 +65,9 @@ class Population:
                 top_new=max([x.fitness for x in self.generations[-1].individuals[1:]]),
                 top_fitness=top_fitness,
                 mean_fitness=self.generations[-1].mean_fitness()))
-            if top_fitness >= self.target_value:
+            if (top_fitness >= self.target_value) or (self.generations[-1].length < self.min_gen_size):
                 break
+
         return fittest
 
     def __str__(self):
