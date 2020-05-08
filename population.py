@@ -65,7 +65,7 @@ class Population:
                 top_new=max([x.fitness for x in self.generations[-1].individuals[1:]]),
                 top_fitness=top_fitness,
                 mean_fitness=self.generations[-1].mean_fitness()))
-            if (top_fitness >= self.target_value) or (self.generations[-1].length < self.min_gen_size):
+            if (top_fitness >= self.target_value) or (len(self.generations[-1].individuals) <= self.min_gen_size):
                 break
 
         return fittest
