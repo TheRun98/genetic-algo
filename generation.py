@@ -11,13 +11,13 @@ class Generation:
     
     """
 
-    def __init__(self, indiv, fit_func, fixed_seed=True, sex_param=(0.25, 0.5, .9)):
+    def __init__(self, indiv, fit_func, fixed_seed=True, sex_param=(0.25, 0.5, .9), size=50):
         self.sex_param = sex_param
 
         if fixed_seed:
             random.seed(0)
         if indiv is None:
-            self.individuals = [Individual(None, fit_func, sex_param=self.sex_param) for x in range(50)]
+            self.individuals = [Individual(None, fit_func, sex_param=self.sex_param) for x in range(size)]
         else:
             self.individuals = indiv
         self.fitness_func = fit_func

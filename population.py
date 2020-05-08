@@ -16,11 +16,14 @@ class Population:
     Driver: Kosta | Navigator: Ben
     """
 
-    def __init__(self, target_value, fitness_func, sex_param=(0.25, 0.5, .9)):
+    def __init__(self, target_value, fitness_func, sex_param=(0.25, 0.5, .9), length=200, gen_size=50):
         self.fitness_func = fitness_func
         self.target_value = target_value
         self.generations = list()
         self.new_generation()
+        self.sex_param = sex_param
+        self.length = length
+        self.gen_size = gen_size
 
     def new_generation(self):
         """
@@ -30,7 +33,7 @@ class Population:
         Driver: Kosta | Navigator: Ben
         """
         if len(self.generations) == 0:
-            gen = Generation(None, self.fitness_func, sex_param=(0.25, 0.5, .9))
+            gen = Generation(None, self.fitness_func, sex_param=self.sex_param, size=self.gen_size)
         else:
             gen = self.generations[-1].reproduction()
         self.generations.append(gen)
@@ -50,7 +53,7 @@ class Population:
         top_fitness = 0
         fittest = None
 
-        while gens < 200:
+        while gens < self.length:
             gens += 1
             self.new_generation()
             fittest = self.generations[-1].top_fitness()
