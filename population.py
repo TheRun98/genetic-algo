@@ -16,7 +16,7 @@ class Population:
     Driver: Kosta | Navigator: Ben
     """
 
-    def __init__(self, target_value, fitness_func):
+    def __init__(self, target_value, fitness_func, sex_param=(0.25, 0.5, .9)):
         self.fitness_func = fitness_func
         self.target_value = target_value
         self.generations = list()
@@ -30,7 +30,7 @@ class Population:
         Driver: Kosta | Navigator: Ben
         """
         if len(self.generations) == 0:
-            gen = Generation(None, self.fitness_func)
+            gen = Generation(None, self.fitness_func, sex_param=(0.25, 0.5, .9))
         else:
             gen = self.generations[-1].reproduction()
         self.generations.append(gen)

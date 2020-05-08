@@ -11,9 +11,13 @@ class Generation:
     
     """
 
-    def __init__(self, indiv, fit_func):
+    def __init__(self, indiv, fit_func, fixed_seed=True, sex_param=(0.25, 0.5, .9)):
+        self.sex_param = sex_param
+
+        if fixed_seed:
+            random.seed(0)
         if indiv is None:
-            self.individuals = [Individual(None, fit_func) for x in range(50)]
+            self.individuals = [Individual(None, fit_func, sex_param=self.sex_param) for x in range(50)]
         else:
             self.individuals = indiv
         self.fitness_func = fit_func
@@ -41,7 +45,7 @@ class Generation:
             if len(children) > len(self.individuals):
                 break
 
-        return Generation(children, self.fitness_func)
+        return Generation(children, self.fitness_func, sex_param=self.sex_param)
 
     def fitness(self):
         """ Assess the fitness of individuals in the generation by calling 
