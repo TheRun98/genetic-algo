@@ -1,5 +1,5 @@
 import numpy as np
-from population import Population
+from genetic_algo import Population
 from numpy.polynomial.polynomial import polyval
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation

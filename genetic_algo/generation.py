@@ -1,5 +1,5 @@
 import random
-from individual import Individual
+from .individual import Individual
 
 
 class Generation:

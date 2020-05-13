@@ -1,4 +1,4 @@
-from generation import Generation
+from .generation import Generation
 
 
 class Population:

@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="genetic-algo",
-    version="1.0.1",
+    name="genetic_algo",
+    version="1.1.0",
     author="Stunning Impalas INST326 Final Project Group",
     description="A genetic algorithm",
     long_description=long_description,
