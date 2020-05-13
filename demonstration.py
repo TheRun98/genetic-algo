@@ -64,66 +64,79 @@ def dummy_func_2(input_array):
 def generation_fit(gen):
     return [x.fitness for x in gen.individuals]
 
-
-goal = -0.02
-p1 = Population(goal, dummy_func_1, (.25, .5, .99999))
-p2 = Population(goal, dummy_func_1, (.25, .5, .9))
-p3 = Population(goal, dummy_func_1, (.25, .5, .75))
+p_m = (0.001, 0.05, 0.25)
+goal = -0.001
+p1 = Population(goal, dummy_func_1, (.25, .5, 1-p_m[0]))
+p2 = Population(goal, dummy_func_1, (.25, .5, 1-p_m[1]))
+p3 = Population(goal, dummy_func_1, (.25, .5, 1-p_m[2]))
 populations = (p1, p2, p3)
+
+palette = ['#0b6e4f', '#2B4162', '#FA9F42', '#721817', '#419D78']
 
 for p in populations:
     print(p.main())
-gen = 10
+# gen = 10
 
-nbins = 30
+nbins = 100
 ymax = 10
 xmin = -1
 # bins = np.linspace(xmin, 0, nbins + 1)
-fig = plt.figure(figsize=(20, 17))
+fig = plt.figure(figsize=(11, 7))
 ax = fig.add_subplot(111, projection='3d')
+
+
 # ax.set(xlim=(-1, 0), ylim=(0, 1), zlim=(0, 10))
 
 # data_1 = np.full(201, 1).tolist()
 # data_2 = np.full(201, 1).tolist()
 # data_3 = np.full(201, 1).tolist()
 # data = (data_1, data_2, data_3)
-
-x = np.linspace(-1, 0, nbins)
-z = np.zeros((3, 29))
-bins = np.zeros((3, 30))
-
-for i, p in enumerate(populations):
-    # for j, l in enumerate(generation_fit(p.generations[gen])):
-    #     data[i][j] = l[j]
-    # z[i], bins = np.histogram(data[i], x, (-1, 0), density=True)
-    z[i], bins[i] = np.histogram(generation_fit(p.generations[gen]), x, (-1, 0), density=True)
-    # a, b = np.histogram(generation_fit(p.generations[gen]), x, (-1, 0), density=True)
-    # print(len(a))
-    # print(len(b))
-
-print(len(bins[0]))
-print(len(z[0]))
-
-ax.bar(bins[0][:-1], z[0], 0, 'y', width=0.035)
-ax.bar(bins[1][:-1], z[1], 0.5, 'y', width=0.035)
-ax.bar(bins[2][:-1], z[2], 1, 'y', width=0.035)
-
-plt.draw()
-plt.show()
-
-# def animate(i):
-#     ax.cla()
-#     ax.set(xlim=(xmin, 0), ylim=(0, ymax))
 #
-#     ax2.cla()
-#     ax2.set(xlim=(0, 1), ylim=(0, 9))
-#
-#     ax3.cla()
-#     ax3.set(xlim=(0, 1), ylim=(-2, 2))
-#
-#     ax4.cla()
-#     ax4.set(xlim=(0, 15), ylim=(-.5, .5))
-#
+# x = np.linspace(-1, 0, nbins)
+# z = np.zeros((3, 29))
+# bins = np.zeros((3, 30))
+
+def animate(f):
+    ax.cla()
+    ax.set(xlim=(xmin, 0), ylim=(0, 2), zlim=(0, 15))
+
+    x = np.linspace(-1, 0, nbins)
+    z = np.zeros((3, nbins-1))
+    bins = np.zeros((3, nbins))
+
+    for i, p in enumerate(populations):
+        if f < len(p.generations):
+            gen_fit = generation_fit(p.generations[f])
+        else:
+            continue
+
+        # for j, l in enumerate(gen_fit):
+        #     data[i][j] = l
+        z[i], bins[i] = np.histogram(gen_fit, x, (-1, 0), density=False)
+
+    for i, p in enumerate(populations):
+        if f >= len(p.generations):
+            continue
+
+        mean_fit = p.generations[f].mean_fitness()
+        best_fit = p.generations[f].top_fitness().fitness
+        n_individuals = len(p.generations[f].individuals)
+        best_new_fit = max([x.fitness for x in p.generations[f].individuals[1:]])
+        best_new_fit_indiv = max(p.generations[f].individuals[1:], key=lambda x: x.fitness)
+        best_new_fit_poly = polyval(test_range, best_new_fit_indiv.genes, tensor=False)
+        best_fit_poly = polyval(test_range, p.generations[f].individuals[0].genes, tensor=False)
+
+        ax.set_title(f'Histogram of fitness for populations with different P(mutation) (gen. {f})', pad=100.)
+        ax.bar(bins[0][:-1], z[i], i + 0.005, 'y', width=0.035, color=palette[i])
+        ax.bar([mean_fit], [15], i - 0.02, 'y', width=0.005, color='k')
+        ax.bar([best_fit], [15], i - 0.02, 'y', width=0.005, color='r')
+        ax.bar([best_new_fit], [15], i - 0.02, 'y', width=0.005, color='m')
+        ax.text3D(-0.99, i, 12, f'P={p_m[i]}')
+        ax.text3D(-0.99, i, 11, 'individuals: {mf}'.format(mf=n_individuals))
+        ax.text3D(-0.99, i, 10, 'mean fit: {mf:.4f}'.format(mf=mean_fit))
+        ax.text3D(-0.99, i, 9, 'best fit (all time): {mf:.4f}'.format(mf=best_fit))
+        ax.text3D(-0.99, i, 8, 'best fit (born this gen.): {mf:.4f}'.format(mf=best_new_fit))
+
 #     mean_fit = p.generations[i].mean_fitness()
 #     best_fit = p.generations[i].top_fitness().fitness
 #     n_individuals = len(p.generations[i].individuals)
@@ -176,13 +189,14 @@ plt.show()
 #     ax4.legend(loc='upper left')
 
 
-# animate(0)
-# anim = animation.FuncAnimation(fig, animate, interval=100, frames=len(p.generations) - 1)
+animate(0)
+anim = animation.FuncAnimation(fig, animate, interval=100, frames=max([len(x.generations) for x in populations]),
+                               blit=False)
 
 # only uncomment the below line if you have ffmpeg installed and are willing to wait for a while each time it runs with
 # more than 100 generations.
 
-# anim.save("fitness_histo_4x_2.mp4")
+anim.save("fitness_histo_3D_5.mp4")
 
-# plt.draw()
-# plt.show()
+plt.draw()
+plt.show()
