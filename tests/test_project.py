@@ -1,9 +1,9 @@
 import unittest
 import numpy as np
 from numpy.polynomial.polynomial import polyval
-from generation import Generation
-from individual import Individual
-from population import Population
+from genetic_algo import Generation
+from genetic_algo import Individual
+from genetic_algo import Population
 
 np.random.seed(0)
 TARGET = np.random.rand(16)
