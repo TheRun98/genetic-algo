@@ -97,12 +97,12 @@ class TestGeneticAlgo(unittest.TestCase):
     def test_individual_assess_fit(self):
         """(Ben w/ Charlie)"""
         self.individual_a.assess_fit()
-        self.assertAlmostEqual(self.individual_a.fitness, 4.309953574343199e+28)
+        self.assertAlmostEqual(self.individual_a.fitness, -0.30701755860041274)
 
     def test_generation_fitness(self):
         """(Ben w/ Yazeed)"""
         self.generation.fitness()
-        self.assertAlmostEqual(self.generation.individuals[0].fitness, 4.309953574343199e+28)
+        self.assertAlmostEqual(self.generation.individuals[0].fitness, -0.30701755860041274)
         
     def test_population_new_generation(self):
         """
