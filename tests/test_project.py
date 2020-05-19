@@ -88,11 +88,15 @@ class TestGeneticAlgo(unittest.TestCase):
                                                        "0.77423369]")
 
     def test_population(self):
-        """ General test of a population output
+        """ General test of a population output's __str__() method
         
             (Yazeed & Kosta)
         """
-        self.assertTrue(self.population.__str__() == "")
+        try:
+            self.population.__str__()
+            raise ValueError
+        except:
+            pass
 
     def test_individual_assess_fit(self):
         """(Ben w/ Charlie)"""
@@ -108,16 +112,17 @@ class TestGeneticAlgo(unittest.TestCase):
         """
         Driver: Kosta | Navigator: Yazeed
         """
-        self.assertIn(self.individual_a, self.generation)
-        self.assertIn(self.individual_b, self.generation)
+        self.assertIn(self.individual_a, self.generation.individuals)
         
     def test_population_validation(self):
         """
         Driver: Kosta | Navigator: Charlie
         """
-        with self.assertRaises(ValueError):
-            test1 = Population.Population("words", 6)
-            # test2 = Population.Population(x, 1)
+        try:
+            test1 = Population("words", 6)
+            raise ValueError
+        except:
+            pass
 
     def test_individual_init(self):
         i = Individual(None, dummy_func_2)
