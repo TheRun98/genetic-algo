@@ -18,6 +18,8 @@ class Individual:
         Args:
             genes(array): an array of 16 floats representing the individual's characteristics
             fit_func(func): function for assessing fitness
+
+        Driver: Charlie | Navigator: Ben
         """
         if genes is None:
             self.genes = [random.uniform(0, 1) for x in range(16)]
@@ -27,7 +29,10 @@ class Individual:
         self.fitness = None
 
     def assess_fit(self):
-        """ Assesses fitness based on self.fit_func and stores it it in self.fit"""
+        """ Assesses fitness based on self.fit_func and stores it it in self.fit
+
+        Driver: Charlie | Navigator: Ben
+        """
         self.fitness = self.fit_func(self.genes)
         return self.fitness
 
@@ -37,6 +42,8 @@ class Individual:
             other (individual): Mate with which self has a child    
         Returns:
             individual: child individual with parents self and other
+
+        Driver: Charlie | Navigator: Ben
         """
         child = Individual(None, self.fit_func)
         for i in range(16):
@@ -51,6 +58,7 @@ class Individual:
             father (Individual): father
         Side Effects:
             Assigns new value to self.genes[index]
+        Driver: Ben | Navigator: Charlie
         """
         rand = random.uniform(0, 1)
         if rand <= SEX_PARAM[0]:
