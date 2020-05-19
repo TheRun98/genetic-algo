@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="genetic_algo",
-    version="1.1.0",
+    version="1.1.1",
     author="Stunning Impalas INST326 Final Project Group",
     description="A genetic algorithm",
     long_description=long_description,
